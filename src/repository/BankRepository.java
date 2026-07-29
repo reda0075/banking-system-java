@@ -37,4 +37,35 @@ public class BankRepository {
             System.out.println(transaction);
         }
     }
+
+    public User findByUsername(String username){
+       for(User user : users){
+          if ( username.equals(user.getUsername())){
+              return user;
+          }
+    }
+        return null;
+    }
+
+
+    public Account findByAccountNbr(int accountnbr){
+        for (Account account : accounts){
+            if (accountnbr == account.getAccountNumber()){
+                return account ;
+            }
+        }
+        return null;
+    }
+
+    public Transaction findById(int idTransaction){
+            for (Transaction transaction : transactions){
+                if (idTransaction == transaction.getId()){
+                    return transaction;
+                }
+        }
+            return null ;
+    }
+
+
+
 }
