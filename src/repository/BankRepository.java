@@ -66,6 +66,10 @@ public class BankRepository {
             return null ;
     }
 
+    public ArrayList<Transaction> getAllTransactions() {
+        return transactions;
+    }
+
 
 
 }
