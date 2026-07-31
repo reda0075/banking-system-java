@@ -37,6 +37,9 @@ public class BankService {
 
 
     public boolean deposite(int accountnumber, double amount){
+        if (amount<=0){
+            return false;
+        }
         Account account = repository.findByAccountNbr(accountnumber);
         if (account == null){
             return false;
@@ -50,10 +53,15 @@ public class BankService {
 
     public boolean withdraw(int accountnumber , double amount){
 
+        if (amount<=0){
+            return false;
+        }
+
         Account account = repository.findByAccountNbr(accountnumber);
         if (account == null){
             return false;
         }
+
             if (account.getBalance()<amount){
                 return false;
             }
@@ -67,13 +75,20 @@ public class BankService {
         return true;
     }
 
-    public boolean transfer(int accountSender,int accountReciver, double amount){
+    public boolean transfer(int accountSender, int accountReceiver, double amount){
+
+        if (accountSender == accountReceiver){
+            return false;
+        }
+        if (amount<=0){
+            return false;
+        }
 
     Account  senderAccount = repository.findByAccountNbr(accountSender);
         if ( senderAccount == null){
             return false;
         }
-        Account receiverAccount = repository.findByAccountNbr(accountReciver);
+        Account receiverAccount = repository.findByAccountNbr(accountReceiver);
         if (receiverAccount == null){
             return false;
         }
@@ -85,7 +100,7 @@ public class BankService {
         senderAccount.setBalance( senderAccount.getBalance()-amount);
         receiverAccount.setBalance(receiverAccount.getBalance()+amount);
 
-        Transaction transaction = new Transaction(nextTransactionId, LocalDate.now(), TransactionType.TRANSFER,amount,"Transfer from " + accountSender + " to "+accountReciver);
+        Transaction transaction = new Transaction(nextTransactionId, LocalDate.now(), TransactionType.TRANSFER,amount,"Transfer from " + accountSender + " to "+ accountReceiver);
         repository.addTransaction(transaction);
         nextTransactionId++;
         return true;
