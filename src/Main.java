@@ -20,7 +20,7 @@ public class Main {
         int choice = 0;
 
         System.out.println("User");
-        User user1 = new User(1,"reda","elhamdaoui","redaa","reda1234");
+        User user1 = new User(1,"user1","nickname1","User1","user1234");
         System.out.println(user1);
         System.out.println("Account");
        Account acc1 = new Account(1,10000.00,user1);
