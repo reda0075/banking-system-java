@@ -7,6 +7,7 @@ import service.BankService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -40,6 +41,10 @@ public class Main {
             System.out.println("5. View Transactions");
             System.out.println("6. Exit");
             System.out.print("Choice: ");
+
+            try {
+
+
 
             choice = scanner.nextInt();
             scanner.nextLine();
@@ -126,6 +131,13 @@ public class Main {
                 default:
                     System.out.print("Invalid choice.");
             }
+
+            } catch (InputMismatchException e) {
+
+                System.out.println("Invalid input. Please enter the correct data type.");
+                scanner.nextLine();
+        }
+
 
         } while (choice != 6);
 
