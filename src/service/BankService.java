@@ -20,7 +20,7 @@ public class BankService {
 
 
     public BankService(BankRepository repository) {
-        this.repository = repository;
+        this.repository = this.repository;
     }
 
     public boolean login(String userName, String pswd){
@@ -36,7 +36,7 @@ public class BankService {
     }
 
 
-    public boolean deposite(int accountnumber, double amount){
+    public boolean deposit(int accountnumber, double amount){
         if (amount<=0){
             return false;
         }
